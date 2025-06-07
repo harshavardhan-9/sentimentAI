@@ -1,0 +1,224 @@
+# Sentiment Analysis API & Dashboard
+## Technical Documentation & User Guide
+
+## Table of Contents
+1. [System Architecture](#system-architecture)
+2. [Installation Guide](#installation-guide)
+3. [API Documentation](#api-documentation)
+4. [Frontend Documentation](#frontend-documentation)
+5. [Development Guide](#development-guide)
+6. [Deployment Guide](#deployment-guide)
+7. [Testing Guide](#testing-guide)
+
+## System Architecture
+
+### Backend Components
+- **FastAPI Application**: Core REST API server
+- **Authentication Module**: JWT-based user authentication
+- **Sentiment Analysis Engine**: TextBlob-based sentiment analysis
+- **File Processing**: CSV file handling with pandas
+
+### Frontend Components
+- **React Application**: Single-page application
+- **Component Structure**:
+  - SentimentDashboard: Main container
+  - FileUpload: File upload handling
+  - ResultsChart: Data visualization
+  - ResultsTable: Results display
+
+### Data Flow
+1. User uploads CSV file
+2. Backend validates and processes file
+3. Sentiment analysis performed on text
+4. Results returned to frontend
+5. Frontend displays visualization and detailed results
+
+## Installation Guide
+
+### Prerequisites
+```bash
+# Backend
+Python 3.8+
+pip install -r requirements.txt
+
+# Frontend
+Node.js 14+
+npm install
+```
+
+### Local Development Setup
+```bash
+# Backend
+cd backend
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+uvicorn app.main:app --reload
+
+# Frontend
+cd frontend
+npm install
+npm start
+```
+
+### Docker Setup
+```bash
+docker-compose up --build
+```
+
+## API Documentation
+
+### Authentication
+```
+POST /token
+Content-Type: application/x-www-form-urlencoded
+
+Parameters:
+- username: string
+- password: string
+
+Response:
+{
+    "access_token": string,
+    "token_type": "bearer"
+}
+```
+
+### Sentiment Analysis
+```
+POST /analyze
+Authorization: Bearer <token>
+Content-Type: multipart/form-data
+
+Parameters:
+- file: CSV file
+
+Response:
+{
+    "results": [
+        {
+            "id": int,
+            "text": string,
+            "sentiment": string,
+            "polarity": float
+        }
+    ],
+    "summary": {
+        "positive": int,
+        "neutral": int,
+        "negative": int
+    }
+}
+```
+
+## Frontend Documentation
+
+### Component Properties
+
+#### FileUpload
+```typescript
+Props {
+    onFileSelect: (event: ChangeEvent<HTMLInputElement>) => void;
+    loading: boolean;
+}
+```
+
+#### ResultsChart
+```typescript
+Props {
+    data: {
+        positive: number;
+        neutral: number;
+        negative: number;
+    }
+}
+```
+
+#### ResultsTable
+```typescript
+Props {
+    results: Array<{
+        id: number;
+        text: string;
+        sentiment: string;
+        polarity: number;
+    }>
+}
+```
+
+## Development Guide
+
+### Adding New Features
+
+1. Backend:
+```python
+# Add new endpoint in main.py
+@app.post("/new-endpoint")
+async def new_feature():
+    # Implementation
+```
+
+2. Frontend:
+```jsx
+// Add new component in src/components
+export const NewComponent = () => {
+    // Implementation
+}
+```
+
+### Code Style
+- Backend: Follow PEP 8
+- Frontend: Follow Airbnb React/JSX Style Guide
+
+## Deployment Guide
+
+### Cloud Deployment (AWS)
+
+1. ECR Setup:
+```bash
+aws ecr create-repository --repository-name sentiment-analysis
+```
+
+2. Push Images:
+```bash
+docker build -t sentiment-analysis .
+docker tag sentiment-analysis:latest <aws-account>.dkr.ecr.<region>.amazonaws.com/sentiment-analysis
+docker push <aws-account>.dkr.ecr.<region>.amazonaws.com/sentiment-analysis
+```
+
+3. ECS Deployment:
+- Create ECS cluster
+- Define task definitions
+- Configure service
+
+### Environment Variables
+```
+Backend:
+- SECRET_KEY
+- CORS_ORIGINS
+- LOG_LEVEL
+
+Frontend:
+- REACT_APP_API_URL
+- REACT_APP_ENV
+```
+
+## Testing Guide
+
+### Backend Tests
+```bash
+# Run tests
+pytest
+
+# Coverage report
+pytest --cov=app
+```
+
+### Frontend Tests
+```bash
+# Run tests
+npm test
+
+# Coverage report
+npm test -- --coverage
+```
