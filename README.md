@@ -11,6 +11,17 @@ Full-stack application for analyzing sentiment in text data, featuring a FastAPI
 - 🐳 Docker deployment ready
 - ✅ Comprehensive testing suite
 
+## Reference Screenshots
+
+## Login Screen 
+![Screenshot (886)](https://github.com/user-attachments/assets/d4810cf6-9fb8-44ad-b58f-9b846815b47d)
+## Main Dashboard
+![Screenshot (887)](https://github.com/user-attachments/assets/0754de7e-12f1-431c-a86b-ae71c79ea1bf)
+## API Documentation UI
+![Screenshot (888)](https://github.com/user-attachments/assets/a58137c6-b6c7-4626-85b8-308fcbfe919c)
+
+
+
 ## Quick Start
 
 ### Using Docker
