@@ -26,7 +26,7 @@ Full-stack application for analyzing sentiment in text data, featuring a FastAPI
 
 ### Using Docker
 ```bash
-git clone https://github.com/mrigankraj/sentiment-analysis
+git clone https://github.com/harshavardhan-9/sentimentAI
 cd sentiment-analysis
 docker-compose up
 ```
