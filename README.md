@@ -82,16 +82,5 @@ cd frontend && npm test
 ## API Documentation
 Swagger UI: `http://localhost:8000/docs`
 
-## Contributing
-1. Fork repository
-2. Create feature branch
-3. Commit changes
-4. Open pull request
-
 ## License
 MIT License
-
-## Support
-- Documentation: See `docs/` directory
-- Issues: GitHub Issues
-- Contact: mrigankraj2003@gmail.com
